@@ -1,4 +1,4 @@
-# search_ipynb_file_for_string
+# search_ipynb_files_for_string
 Searches directory for Jupyter Notebook files for particular string
 
 
