@@ -2,7 +2,7 @@
 Searches directory for Jupyter Notebook files for particular string
 
 
-purpose: to search a directory for any Jupyter Notebook files ('.ipynb')
+purpose: to search a directory recursively for any Jupyter Notebook files ('.ipynb')
 If a Jupyter Notebook file is found:
 1. it is converted to a text file and then;
 2. searched for a string the user enters
