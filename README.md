@@ -6,7 +6,7 @@ purpose: to search a directory for any Jupyter Notebook files ('.ipynb')
 If a Jupyter Notebook file is found:
 1. it is converted to a text file and then;
 2. searched for a string the user enters
-returns a list of filepaths to the .ipynb file containing the search term
+3. returns a list of filepaths to the .ipynb file containing the search term
 
 To use:
 
