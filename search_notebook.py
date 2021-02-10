@@ -15,17 +15,30 @@ def main(string_to_search):
 
     def save_ipynb_file_as_txt_file(filename):
 
+        import re
+
+        regex = r".ipynb$"
+
+        subst = "_copy.ipynb"
+
         # 1. make copy of ipynb file
 
         orig_ipynb_file = filename
-        new_ipynb_file = filename.replace('.ipynb', '_copy.ipynb')
+
+        # new_ipynb_file = filename.replace('.ipynb', '_copy.ipynb')
+
+        new_ipynb_file = re.sub(regex, subst, filename, 0, re.MULTILINE)
 
         shutil.copy2(orig_ipynb_file, new_ipynb_file)
 
         # 2. change extension of new file from .ipynb to .txt
 
+        subst = ".txt"
+
         ipynb_fname = new_ipynb_file
-        txt_fname = new_ipynb_file.replace('.ipynb', '.txt')
+        # txt_fname = new_ipynb_file.replace('.ipynb', '.txt')
+
+        txt_fname = re.sub(regex, subst, ipynb_fname, 0, re.MULTILINE)
 
         os.rename(ipynb_fname, txt_fname)
 
@@ -83,8 +96,10 @@ def main(string_to_search):
 
         if search_text_file_for_string(txt_file_name):
 
-            found_search_string_in_ipynb_file_list.append(
-                txt_file_name.replace('_copy.txt', '.ipynb'))
+            if ".ipynb_checkpoints" not in txt_file_name:
+
+                found_search_string_in_ipynb_file_list.append(
+                    txt_file_name.replace('_copy.txt', '.ipynb'))
 
         os.remove(txt_file_name)
 
