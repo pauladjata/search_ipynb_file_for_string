@@ -15,3 +15,5 @@ To use:
 2. in command line: [ python search_notebook.py "string to search" ]
 3. the search string must be surrounded by double quotes
 
+The results are displayed in the command line.
+
