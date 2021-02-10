@@ -10,7 +10,7 @@ returns a list of filepaths to the .ipynb file containing the search term
 
 To use:
 
-cd into directory which you would like to search
-in command line: [ python search_notebook.py "string to search" ]
-search string must be surrounded by double quotes
+a. cd into directory which you would like to search
+b. in command line: [ python search_notebook.py "string to search" ]
+c. the search string must be surrounded by double quotes
 
