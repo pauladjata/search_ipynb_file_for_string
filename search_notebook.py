@@ -11,7 +11,7 @@ import os
 import shutil
 
 
-def main(string_to_search):
+def main(string_to_search, selected_path):
 
     def save_ipynb_file_as_txt_file(filename):
 
@@ -57,7 +57,15 @@ def main(string_to_search):
             return False
 
     # This is the path where you want to search
-    path = os.getcwd()
+    if not selected_path:
+
+        selected_path = os.getcwd()
+
+    if not os.path.isdir(selected_path):
+
+        print("THE DIRECTORY GIVEN DOES NOT EXIST")
+
+        return None
 
     # this is the extension you want to detect
     extension = ".ipynb"
@@ -67,7 +75,7 @@ def main(string_to_search):
     file_info_dict = {}
     key = 0
 
-    for root, dirs_list, files_list in os.walk(path):
+    for root, dirs_list, files_list in os.walk(selected_path):
         for file_name in files_list:
             if os.path.splitext(file_name)[-1] == extension:
                 file_name_path = os.path.join(root, file_name)
@@ -125,9 +133,12 @@ if __name__ == "__main__":
     ap.add_argument('search_string', type=str,
                     help="A required string positional argument. Format 'string to search' Must be surrounded by double quotes")
 
+    ap.add_argument("--path", type=str, required=False, default=None,
+                    help=r"An optional string positional argument. Used to set the root path from which to search. Format 'C:\Users' Must be surrounded by double quotes")
+
     args = ap.parse_args()
 
     if (args.search_string == None or len(args.search_string) == 0):
         ap.print_help()
     else:
-        main(string_to_search=args.search_string)
+        main(string_to_search=args.search_string, selected_path=args.path)
